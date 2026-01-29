@@ -1,5 +1,6 @@
 from dbcon import get_db_connection
 from logerror import log_db_error
+from clean import cleanup_data
 
 def create_tables():
     commands = [
