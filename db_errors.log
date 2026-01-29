@@ -1,0 +1,15 @@
+2026-01-28 15:48:57,872 - [Report Generation] column s.name does not exist
+LINE 1: SELECT s.name, COUNT(pu.purchase_id), COALESCE(SUM(pu.quanti...
+               ^
+
+2026-01-28 15:51:10,853 - [Report Generation] column s.name does not exist
+LINE 1: SELECT s.name, COUNT(pu.purchase_id), COALESCE(SUM(pu.quanti...
+               ^
+
+2026-01-28 15:53:22,537 - [Report Generation] column p.name does not exist
+LINE 1: SELECT p.name, SUM(o.quantity), SUM(o.quantity * p.price) 
+               ^
+
+2026-01-29 11:27:19,879 - [Upsert Product] new row for relation "products" violates check constraint "products_price_check"
+DETAIL:  Failing row contains (4, charger, -700.00, 370).
+
