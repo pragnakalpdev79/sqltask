@@ -14,6 +14,7 @@ def upsert_product(name, price):
     """
     conn = get_db_connection()
 
+
     try:
         cur = conn.cursor()
         cur.execute("SELECT product_id FROM products WHERE product_name = %s", (name,)) 
@@ -27,15 +28,16 @@ def upsert_product(name, price):
             print("Do you Want to update the existing stock for the product?")
             checkif = input("ENTER Y to update stock , or preess any other key to continue").strip().lower()
             if checkif == 'y':
-                stock = get_valid_input("ENTER THE STOCK TO BE ADDED",int) 
+                stock = get_valid_input("ENTER THE STOCK TO BE ADDED :- ",int) 
                 cur.execute("UPDATE products SET stock = %s WHERE product_name = %s", (stock, name))
                 print("Stock Updated!!")     
         else:
-            stock = get_valid_input("ENTER THE INTIAL STOCK",int) 
+            stock = get_valid_input("ENTER THE INTIAL STOCK :- ",int) 
             cur.execute("INSERT INTO products (product_name, price, stock) VALUES (%s, %s, %s)", (name, price, stock))
             print(f" New product '{name}' created.")
         conn.commit()
     except Exception as e:
+        print("A server error,please try again!")
         log_db_error(e, "Upsert Product")
     finally:
         conn.close()

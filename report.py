@@ -10,6 +10,9 @@ def generate_reports(report_type):
             sql = """SELECT product_name, SUM(o.quantity), SUM(o.quantity * p.price) 
                      FROM orders o JOIN products p ON o.product_id = p.product_id 
                      WHERE o.order_date = CURRENT_DATE GROUP BY product_name"""
+            # 3 columns product_name, sum of orders placed,sum of total revenus using both daily orders and price
+            # JOINING where product ids match in orders and products table
+            # and where the order date is equal to product name
             print("\n--- DAILY SUMMARY ---")
             headers = ["Product", "Sold", "Revenue"]
         else:
@@ -30,5 +33,6 @@ def generate_reports(report_type):
         print("-" * 50)
     except Exception as e:
         log_db_error(e, "Report Generation")
+        print("A server error,please try again!")
     finally:
         conn.close()
